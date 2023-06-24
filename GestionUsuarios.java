@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Java_EatsGrfica;
+package poo.java_eatsGrafica;
 
 import java.awt.Image;
 import java.sql.Connection;
@@ -38,7 +38,7 @@ public class GestionUsuarios extends javax.swing.JFrame {
         
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         
-        ImageIcon wallpaper =  ImageIcon("src/images/walppaperPrincipal.jpg");
+        ImageIcon wallpaper = ne ImaegIcon("src/images/walppaperPrincipal.jpg");
         Icon icono = new ImageIcon(wallpaper.getImage().getScaledInstance(Fond.getWidth(),
                 Fondo.getHeight(),Image.SCALE_DEFAULT));
         Fondo.setIcon(icono);
@@ -134,8 +134,4 @@ public class GestionUsuarios extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTable tabla_usuarios;
     // End of variables declaration//GEN-END:variables
-
-    private ImageIcon ImageIcon(String srcimageswalppaperPrincipaljpg) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 }

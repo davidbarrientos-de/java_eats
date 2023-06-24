@@ -1,15 +1,17 @@
-package Java_EatsGrfica;
+package poo.java_eatsGrafica;
 
 
-import poo.java_eats.Restaurantes;
-import poo.java_eats.Comida;
-import poo.java_eats.UtilApp;
-import poo.java_eats.Catering;
-import poo.java_eats.Administrador;
+import poo.java_eatsLogica.Restaurantes;
+import poo.java_eatsLogica.Comida;
+import poo.java_eatsLogica.UtilApp;
+import poo.java_eatsLogica.Catering;
+import poo.java_eatsLogica.Administrador;
 import java.awt.HeadlessException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.ListIterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class ConsultaProductoD extends javax.swing.JDialog {
@@ -38,6 +40,10 @@ public class ConsultaProductoD extends javax.swing.JDialog {
         initComponents();
         consultarTodo(rest);
         this.setVisible(true);
+    }
+
+    ConsultaProductoD() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     /**
@@ -255,6 +261,7 @@ public class ConsultaProductoD extends javax.swing.JDialog {
         if (li.hasNext()) {
             rest = li.next();
             if (rest != null) {
+                Comida com = null;
                 presenta(com);
             } else {
                 JOptionPane.showMessageDialog(this, "No hay productos.", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
@@ -268,6 +275,7 @@ public class ConsultaProductoD extends javax.swing.JDialog {
         if (li.hasPrevious()) {
             rest = li.previous();
             if (rest != null) {
+                Comida com = null;
                 presenta(com);
             } else {
                 JOptionPane.showMessageDialog(this, "No hay productos.", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
@@ -305,10 +313,11 @@ public class ConsultaProductoD extends javax.swing.JDialog {
         // TODO add your handling code here:
         try {
             int cantidad = (Integer) jSpinnerCant.getValue();
-            int stock = com.getCantidad();
+            Comida com = null;
+            int stock = (int) com.getCantidad();
             String tipo = rest.getClass().getSimpleName();
             com.setCantidad(cantidad + stock);
-            JOptionPane.showMessageDialog(this, "Ahora hay " + objpro.getCantidad() + " unidades.", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Ahora hay " + com.getCantidad() + " unidades.", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
             presenta(com);
             if (cantidad < 0) {
                 JOptionPane.showMessageDialog(this, "No introduzca valores negativos", "Mensaje", JOptionPane.ERROR_MESSAGE);
@@ -322,7 +331,8 @@ public class ConsultaProductoD extends javax.swing.JDialog {
         // TODO add your handling code here:
         try {
             int cantidad = (Integer) jSpinnerCant.getValue();
-            int stock = com.getCantidad();
+            Comida com;
+            int stock = (int) com.getCantidad();
 
             if (cantidad < 0) {
                 JOptionPane.showMessageDialog(this, "No introduzca valores negativos.", "Mensaje", JOptionPane.ERROR_MESSAGE);
@@ -337,8 +347,10 @@ public class ConsultaProductoD extends javax.swing.JDialog {
             } else {
                 JOptionPane.showMessageDialog(this, "No hay suficiente stock.", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
             }
-        } catch (HeadlessException | IOException | NumberFormatException e) {
+        } catch (HeadlessException | NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Error al comprar: " + e.toString(), "Mensaje", JOptionPane.ERROR_MESSAGE);
+        } catch (IOException ex) {
+            Logger.getLogger(ConsultaProductoD.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButtonCompraActionPerformed
 
@@ -370,4 +382,8 @@ public class ConsultaProductoD extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JSpinner jSpinnerCant;
     // End of variables declaration//GEN-END:variables
+
+    private void presenta(Restaurantes rest) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

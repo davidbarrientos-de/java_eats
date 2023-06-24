@@ -2,15 +2,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
-package Java_EatsGrfica;
+package poo.java_eatsGrafica;
 
-import Java_EatsGrfica.ConsultaProductoD;
+import poo.java_eatsGrafica.ConsultaProductoD;
 import java.awt.Frame;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import poo.java_eats.Restaurantes;
-import poo.java_eats.UtilApp;
+import poo.java_eatsLogica.Restaurantes;
+import poo.java_eatsLogica.UtilApp;
 
 /**
  *

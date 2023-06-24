@@ -1,4 +1,4 @@
-package Java_EatsGrfica;
+package poo.java_eatsGrafica;
 
 public class PanelDatos extends javax.swing.JPanel {
 

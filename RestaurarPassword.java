@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Java_EatsGrfica;
+package poo.java_eatsGrafica;
 
 import java.sql.*;
 import clases.Conexion;
