@@ -31,7 +31,6 @@ public class UtilApp {
 
     private static ArrayList<Restaurantes> restaurantes = new ArrayList<>();
     private static Restaurantes rest;
-    private static Iterable<Comida> carrito;
 
     public static ArrayList<Restaurantes> getRestaurantesPorNombre() {
         //Comparador para ordenar los Restaurantes por su nombre
@@ -50,7 +49,7 @@ public class UtilApp {
     }
 
     public static ArrayList<Restaurantes> getRestaurantesPorPrecio() {
-        //Comparador para ordenar los Restaurantes por su nombre
+        //Comparador para ordenar los Restaurantes por su precio
         Comparator PrecioComp = new Comparator() {
 
             @Override
@@ -64,6 +63,61 @@ public class UtilApp {
         };
         //Ordenamos el array
         Collections.sort(restaurantes, PrecioComp);
+        return restaurantes;
+    }
+    
+    
+    public static ArrayList<Restaurantes> getRestaurantesPorCodigoPostal() {
+        //Comparador para ordenar los Restaurantes por su codiog postal
+        Comparator CodigoPost = new Comparator() {
+
+            @Override
+            public int compare(Object o1, Object o2) {
+                Restaurantes r1 = (Restaurantes) o1;
+                Restaurantes r2 = (Restaurantes) o2;
+                Direccion pr1 = r1.getDireccion();
+                Direccion pr2 = r2.getDireccion();
+                return pr1.compareTo(pr2);
+            }
+        };
+        //Ordenamos el array
+        Collections.sort(restaurantes, CodigoPost);
+        return restaurantes;
+    }
+    public static ArrayList<Restaurantes> getRestaurantesPorTiempo() {
+        //Comparador para ordenar los Restaurantes por su tiempo de envio
+        Comparator TiempoComp;
+        TiempoComp = new Comparator() {
+            
+            @Override
+            public int compare(Object o1, Object o2) {
+                Restaurantes r1 = (Restaurantes) o1;
+                Restaurantes r2 = (Restaurantes) o2;
+                Double t1 = r1.getTiempoEnvio();
+                Double t2 = r2.getTiempoEnvio();
+                return t1.compareTo(t2);
+            }
+        };
+        //Ordenamos el array
+        Collections.sort(restaurantes, TiempoComp);
+        return restaurantes;
+    }
+    
+    public static ArrayList<Restaurantes> getRestaurantesPorCalificacion() {
+        //Comparador para ordenar los Restaurantes por su calificacion
+        Comparator Calific = new Comparator() {
+
+            @Override
+            public int compare(Object o1, Object o2) {
+                Restaurantes r1 = (Restaurantes) o1;
+                Restaurantes r2 = (Restaurantes) o2;
+                Double pr1 = r1.getCalificacion();
+                Double pr2 = r2.getCalificacion();
+                return pr1.compareTo(pr2);
+            }
+        };
+        //Ordenamos el array
+        Collections.sort(restaurantes, Calific);
         return restaurantes;
     }
 
@@ -153,7 +207,7 @@ public class UtilApp {
      * @param cantidad
      * @throws java.io.IOException
      */
-    public static void generaFactura(Restaurantes rest,Cliente cli, CarritoCompra carri,  int cantidad) throws IOException {
+    public static void generaFactura(Restaurantes rest,Cliente cli, CarritoCompra carri,  int cantidad, String fecha, Iterable<Comida> carrito) throws IOException {
         LocalDate hoy = LocalDate.now();
         DateTimeFormatter formatoCorto = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         String fn = hoy.format(formatoCorto);
@@ -200,4 +254,6 @@ public class UtilApp {
     private static Object consultaRestaurantesPorCif(String cif) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+    
 }
