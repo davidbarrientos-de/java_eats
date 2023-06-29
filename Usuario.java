@@ -6,7 +6,7 @@ import java.util.HashSet;
  * @author aleja
  */
 public class Usuario {
-    protected String Identificacion;
+    private String Identificacion;
     protected String Nombre; //Nombre del cliente, empresa o restaurante//
     protected String Calle;
     protected int numeroDireccion;
