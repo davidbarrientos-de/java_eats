@@ -1,40 +1,44 @@
-package poo.java_eats;
+package poo.java_eatsLogica;
 
-import java.io.IOException;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.util.Date;
-import java.util.ArrayList;
-import java.util.HashSet;
-import poo.java_eats.Comida;
+import java.io.Serializable;
 
-/**
- * @author Alejandro Torres
- */
-public class Cliente extends Usuario{
+
+public class Cliente implements Serializable{
     private String TipoCliente;
-    private String DNI;
-    private String CIF;
+    private String Identificacion;
+    private String Nombre; //Nombre del cliente, empresa o restaurante//
+    private String Calle;
+    private int numeroDireccion;
+    private int CP;
+    private String Ciudad;
+    private String titularTarjeta;
+    private String numeroTarjeta;
+    private String fechaCaducidad; // Caducidad de la tatrjeta de credito//
+    private String Telefono;
     private String Web;
-    Boolean Registrarse;
-    Boolean IniciarSesion;
-    
-    public HashSet<Comida> comidas;
-    public HashSet<String> clientes;
+    private String Correo;
+    private String Clave;
 
-    public Cliente(String TipoCliente, String DNI, String CIF, String Web, Boolean Registrarse, Boolean IniciarSesion, String Calle, String Ciudad, String Correo, String Clave, String CP, Date fechaCaducidad, String Nombre, int numeroDireccion, String numeroTarjeta, String nombreTitular, String titularTarjeta, String Telefono, String tipoUsuario) {
-        super(Calle, Ciudad, Correo, Clave, CP, fechaCaducidad, Nombre, numeroDireccion, numeroTarjeta, nombreTitular, titularTarjeta, Telefono, tipoUsuario);
+    public Cliente() {
+    }
+
+    public Cliente(String TipoCliente, String Identificacion, String Nombre, String Calle, int numeroDireccion, int CP, String Ciudad, String titularTarjeta, String numeroTarjeta, String fechaCaducidad, String Telefono, String Web, String Correo, String Clave) {
         this.TipoCliente = TipoCliente;
-        this.DNI = DNI;
-        this.CIF = CIF;
+        this.Identificacion = Identificacion;
+        this.Nombre = Nombre;
+        this.Calle = Calle;
+        this.numeroDireccion = numeroDireccion;
+        this.CP = CP;
+        this.Ciudad = Ciudad;
+        this.titularTarjeta = titularTarjeta;
+        this.numeroTarjeta = numeroTarjeta;
+        this.fechaCaducidad = fechaCaducidad;
+        this.Telefono = Telefono;
         this.Web = Web;
-        this.Registrarse = Registrarse;
-        this.IniciarSesion = IniciarSesion;
-    } 
+        this.Correo = Correo;
+        this.Clave = Clave;
+    }
 
-    
     public String getTipoCliente() {
         return TipoCliente;
     }
@@ -43,20 +47,84 @@ public class Cliente extends Usuario{
         this.TipoCliente = TipoCliente;
     }
 
-    public String getDNI() {
-        return DNI;
+    public String getIdentificacion() {
+        return Identificacion;
     }
 
-    public void setDNI(String DNI) {
-        this.DNI = DNI;
+    public void setIdentificacion(String Identificacion) {
+        this.Identificacion = Identificacion;
     }
 
-    public String getCIF() {
-        return CIF;
+    public String getNombre() {
+        return Nombre;
     }
 
-    public void setCIF(String CIF) {
-        this.CIF = CIF;
+    public void setNombre(String Nombre) {
+        this.Nombre = Nombre;
+    }
+
+    public String getCalle() {
+        return Calle;
+    }
+
+    public void setCalle(String Calle) {
+        this.Calle = Calle;
+    }
+
+    public int getNumeroDireccion() {
+        return numeroDireccion;
+    }
+
+    public void setNumeroDireccion(int numeroDireccion) {
+        this.numeroDireccion = numeroDireccion;
+    }
+
+    public int getCP() {
+        return CP;
+    }
+
+    public void setCP(int CP) {
+        this.CP = CP;
+    }
+
+    public String getCiudad() {
+        return Ciudad;
+    }
+
+    public void setCiudad(String Ciudad) {
+        this.Ciudad = Ciudad;
+    }
+
+    public String getTitularTarjeta() {
+        return titularTarjeta;
+    }
+
+    public void setTitularTarjeta(String titularTarjeta) {
+        this.titularTarjeta = titularTarjeta;
+    }
+
+    public String getNumeroTarjeta() {
+        return numeroTarjeta;
+    }
+
+    public void setNumeroTarjeta(String numeroTarjeta) {
+        this.numeroTarjeta = numeroTarjeta;
+    }
+
+    public String getFechaCaducidad() {
+        return fechaCaducidad;
+    }
+
+    public void setFechaCaducidad(String fechaCaducidad) {
+        this.fechaCaducidad = fechaCaducidad;
+    }
+
+    public String getTelefono() {
+        return Telefono;
+    }
+
+    public void setTelefono(String Telefono) {
+        this.Telefono = Telefono;
     }
 
     public String getWeb() {
@@ -67,170 +135,30 @@ public class Cliente extends Usuario{
         this.Web = Web;
     }
 
-    public BufferedReader getEntrada() {
-        return entrada;
+    public String getCorreo() {
+        return Correo;
     }
 
-    public void setEntrada(BufferedReader entrada) {
-        this.entrada = entrada;
+    public void setCorreo(String Correo) {
+        this.Correo = Correo;
+    }
+
+    public String getClave() {
+        return Clave;
+    }
+
+    public void setClave(String Clave) {
+        this.Clave = Clave;
     }
 
     @Override
     public String toString() {
-        return "Cliente{" + "TipoCliente=" + TipoCliente + ", DNI=" + DNI + ", CIF=" + CIF + ", Web=" + Web + ", Registrarse=" + Registrarse + ", IniciarSesion=" + IniciarSesion + ", entrada=" + entrada + '}';
+        return "Cliente{" + "TipoCliente=" + TipoCliente + ", Identificacion=" + Identificacion + ", Nombre=" + Nombre + ", Calle=" + Calle + ", numeroDireccion=" + numeroDireccion + ", CP=" + CP + ", Ciudad=" + Ciudad + ", titularTarjeta=" + titularTarjeta + ", numeroTarjeta=" + numeroTarjeta + ", fechaCaducidad=" + fechaCaducidad + ", Telefono=" + Telefono + ", Web=" + Web + ", Correo=" + Correo + ", Clave=" + Clave + '}';
     }
 
-    BufferedReader entrada = new BufferedReader (new InputStreamReader(System.in));
-    public void RegistroCliente() throws IOException {
-        System.out.println("Iniciar Sesion o Registrarse");
-        if (Registrarse==true){
-            System.out.println("Particular o Empresa");
-            TipoCliente = entrada.readLine();
-            if(TipoCliente.equals("Particular")){
-                try (BufferedWriter writer = new BufferedWriter (new FileWriter("Cliente_Particulares.txt", true))){
-                    Cliente cli = new Cliente();
-                    writer.write("Tipo Cliente: "+getTipoCliente());
-                    cli.setTipoCliente("Tipo de Cliente: "+getTipoCliente());
-                    writer.newLine();
-                    writer.write("DNI: "+getDNI());
-                    cli.setDNI("DNI: "+getDNI());
-                    writer.newLine();
-                    writer.write("Nombre: "+super.getNombre());
-                    cli.setNombre("Nombre: "+getNombre());
-                    writer.newLine();
-                    writer.write("Correo: "+super.getCorreo());
-                    cli.setCorreo("Correo: "+getCorreo());
-                    writer.newLine();
-                    writer.write("Clave: "+super.getClave());
-                    cli.setClave("Clave: "+getClave());
-                    writer.newLine();
-                    writer.write("Calle: "+super.getCalle());
-                    cli.setCalle("Calle: "+getCalle());
-                    writer.newLine();
-                    writer.write("Numero: "+super.getNumeroDireccion());
-                    cli.setNumeroDireccion(getNumeroDireccion());
-                    writer.newLine();
-                    writer.write("Codigo Postal: "+super.getCP());
-                    cli.setCP("Codigo Postal: "+getCP());
-                    writer.newLine();
-                    writer.write("Ciudad: "+super.getCiudad());
-                    cli.setCiudad("Ciudad: "+getCiudad());
-                    writer.newLine();
-                    writer.write("Nombre del titular de la tarjeta: "+super.getNombreTitular());
-                    cli.setNombreTitular("Nombre del titular de la tarjeta: "+getNombreTitular());
-                    writer.newLine();
-                    writer.write("Numero de la Tarjeta: "+super.getNumeroTarjeta());
-                    cli.setNumeroTarjeta("Numero de la Tarjeta: "+getNumeroTarjeta());
-                    writer.newLine();
-                    writer.write("Fecha de caducidad de la tarjeta: "+super.getFechaCaducidad());
-                    cli.setFechaCaducidad(getFechaCaducidad());
-                    writer.newLine();
-                    writer.write("Telefono: "+super.getTelefono());
-                    cli.setTelefono("Telefono: "+super.getTelefono());
-                    clientes.add(cli);
-                }
-            } else if (TipoCliente.equals("Empresa")){
-                try (BufferedWriter writer = new BufferedWriter (new FileWriter("Clientes_Empresas.txt",true))){
-                    Cliente cli = new Cliente();
-                    writer.write("Tipo Cliente: "+getTipoCliente());
-                    cli.setTipoCliente("Tipo de Cliente: "+getTipoCliente());
-                    writer.newLine();
-                    writer.write("CIF: "+getCIF());
-                    cli.setCIF("CIF: "+getCIF());
-                    writer.newLine();
-                    writer.write("Nombre: "+super.getNombre());
-                    cli.setNombre("Nombre: "+getNombre());
-                    writer.newLine();
-                    writer.write("Correo: "+super.getCorreo());
-                    cli.setCorreo("Correo: "+getCorreo());
-                    writer.newLine();
-                    writer.write("Clave: "+super.getClave());
-                    cli.setClave("Clave: "+getClave());
-                    writer.newLine();
-                    writer.write("Calle: "+super.getCalle());
-                    cli.setCalle("Calle: "+getCalle());
-                    writer.newLine();
-                    writer.write("Numero: "+super.getNumeroDireccion());
-                    cli.setNumeroDireccion(getNumeroDireccion());
-                    writer.newLine();
-                    writer.write("Codigo Postal: "+super.getCP());
-                    cli.setCP("Codigo Postal: "+getCP());
-                    writer.newLine();
-                    writer.write("Ciudad: "+super.getCiudad());
-                    cli.setCiudad("Ciudad: "+getCiudad());
-                    writer.newLine();
-                    writer.write("Nombre del titular de la tarjeta: "+super.getNombreTitular());
-                    cli.setNombreTitular("Nombre del titular de la tarjeta: "+getNombreTitular());
-                    writer.newLine();
-                    writer.write("Numero de la Tarjeta: "+super.getNumeroTarjeta());
-                    cli.setNumeroTarjeta("Numero de la Tarjeta: "+getNumeroTarjeta());
-                    writer.newLine();
-                    writer.write("Fecha de caducidad de la tarjeta: "+super.getFechaCaducidad());
-                    cli.setFechaCaducidad(getFechaCaducidad());
-                    writer.write("Telefono: "+super.getTelefono());
-                    writer.newLine();
-                    cli.setTelefono("Telefono: "+super.getTelefono());
-                    writer.newLine();
-                    writer.write("Web: "+getWeb());
-                    cli.setWeb("Web: "+getWeb());
-                    clientes.add(cli);
-                }
-            }
-        }  
-    }
-    
-    public void IniciarSesion() throws IOException{
-        if (IniciarSesion==true){
-            System.out.println("Correo: ");
-            Correo = entrada.readLine();
-            System.out.println("Contraseña: ");
-            Clave = entrada.readLine();
-            if (clientes.contains(Correo) && clientes.contains(Clave)){
-                System.out.println("Iniciando Sesion...");
-            } else {
-                System.out.println("El correo electronico o la contraseña son incorrectos");
-            }
-        }
-    }
-    public void BuscarComida() throws IOException{
-        String Busqueda;
-        System.out.println("Buscar: ");
-        Busqueda = entrada.readLine();
-        if (comidas.contains(Busqueda)){
-            System.out.println(comidas.toString());
-        } else {
-            System.out.println(""+Busqueda+" no encotrada");
-        }
-    }
-    public void ComprarComida(){
-        
-        
-    }
-    
-    public void OpinarRestaurantes() throws IOException{
-        int estrellas;
-        String Reseña;
-        System.out.println("Estrellas (0-5): ");
-        estrellas=entrada.read();
-        if ((estrellas>=0)&&(estrellas<=5)){
-            System.out.println("Deje su reseña: ");
-            Reseña=entrada.readLine();
-        } else {
-            System.out.println("Puntuacion no valida");
-        }
-        
-        
-    }
-    
-    public void ModificarDatos(){
-        clientes.put(cli.getDNI(), cli);
-        System.out.println(clientes.toString());
-        Cliente obj = clientes.get(""+DNI);
-        System.out.println("Nombre: "+obj.getNombre());
-        obj.setNombre("Nuevo Nombre: ");
-        
-        System.out.println(clientes.toString());
-    }
+   
+
     
 }
+
 
