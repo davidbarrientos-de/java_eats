@@ -1,6 +1,6 @@
-package poo.java_eats;
+package poo.java_eatsLogica;
 
-import java.util.ArrayList;
+
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
@@ -8,23 +8,15 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.HashSet;
 
-/**
- * @author Alejandro Torres
- */
-
-
-public class Administrador extends Usuario { 
+public class Administrador extends Cliente { 
     BufferedReader entrada = new BufferedReader(new InputStreamReader(System.in));
+    private HashSet<String> clientes;
 
-    public Administrador(String Calle, String Ciudad, String Correo, 
-            String Clave, String CP, Date fechaCaducidad, String Nombre, 
-            int numeroDireccion, String numeroTarjeta, String nombreTitular, 
-            String titularTarjeta, String Telefono, String tipoUsuario, 
-            ArrayList lista_clientes) {
-        super(Calle, Ciudad, Correo, Clave, CP, fechaCaducidad, Nombre, 
-                numeroDireccion, numeroTarjeta, nombreTitular, titularTarjeta, 
-                Telefono, tipoUsuario, lista_clientes);
+    public Administrador(String Identificacion, String Nombre, String Calle, int numeroDireccion, int CP, String Ciudad, String titularTarjeta, String numeroTarjeta, String fechaCaducidad, String Telefono, String Correo, String Clave) {
+        super(Identificacion, Nombre, Calle, numeroDireccion, CP, Ciudad, titularTarjeta, numeroTarjeta, fechaCaducidad, Telefono, Correo, Clave);
     }
+
+ 
 
     public void AccesoAdministrador(){
     try {
@@ -44,9 +36,10 @@ public class Administrador extends Usuario {
        System.out.println("Usuario o contraseñas incorrectos");}
     }
     
-    public void ConsultaUsuarios(){
-        for (int i=0; i<1000; i++){
-           System.out.println(clientes.get(i));
+    public static void main(String[] args){
+        HashSet<String> clientes = new HashSet<>();
+        for (String elementos : clientes){
+           System.out.println(elementos);
         }
     } 
     public void ConsultarRestaurantes(){
@@ -67,7 +60,6 @@ public class Administrador extends Usuario {
         }
     }
 }
-
 
     
 
