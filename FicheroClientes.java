@@ -9,11 +9,6 @@ import java.io.InputStreamReader;
 
 public class FicheroClientes {
 
-    public static void main(String[] args) {
-        // TODO code application logic here
-        leer();
-    }
-
     public static void leer() {
         String cad;
         try {
@@ -21,11 +16,8 @@ public class FicheroClientes {
             InputStreamReader isr = new InputStreamReader(fis, "ISO-8859-1");
             BufferedReader br = new BufferedReader(isr);
 
-            String cadena = "";
-            String array[];
             while ((cad = br.readLine()) != null) {
                 System.out.println(cad);
-                array = cad.split(";");
             }
             //Cerramos el stream
             br.close();

@@ -1,7 +1,6 @@
-package poo.java_eatsLogica;
+package poo.java_eats;
 
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
@@ -13,10 +12,16 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-public class UtilCliente {
+public class UtilCliente{
     
     private static ArrayList<Cliente> clientes = new ArrayList<>();
-    private static Cliente cli;
+    private static Cliente objcli;
+
+    public UtilCliente() {
+        clientes = new ArrayList<>();
+    }
+
+    
     
     public static void setClientes(ArrayList<Cliente> c){
         clientes = c;
@@ -24,17 +29,34 @@ public class UtilCliente {
     
     
     /** Registar un cliente
-    * @param  cli
+    * @param  objcli
     * @return */
-    public static boolean registroCliente (Cliente cli){
-        if (consultaClientePorID(cli.getIdentificacion()) == null){
-            clientes.add(cli);
+    public static boolean registroCliente (Cliente objcli){
+        if (consultaClientePorID(objcli.getIdentificacion()) == null){
+            clientes.add(objcli);
             return true;
         } else {
             return false;
         }
     }
     
+    public static String obtenerClaveporCorreo(String correo){
+        for(Cliente cliente : clientes){
+            if(cliente.getCorreo().equals(correo)){
+                return cliente.getClave();
+            }
+        }
+        return null;
+    }
+    
+    public static String obtenerTCporCorreo(String correo){
+        for(Cliente cliente : clientes){
+            if(cliente.getCorreo().equals(correo)){
+                return cliente.getTipoCliente();
+            }
+        }
+        return null;
+    }
     public static Cliente consultaClientePorID(String Identificacion){
         //Comparador para ordenar los clientes por su identificacion
         Comparator IDcliComp = new Comparator(){
@@ -54,15 +76,15 @@ public class UtilCliente {
         c.setIdentificacion(Identificacion);
         int pos = Collections.binarySearch(clientes, c, IDcliComp);
         if (pos>=0){
-            cli = clientes.get(pos);
+            objcli = clientes.get(pos);
         } else {
-            cli = null;
+            objcli = null;
         }
-        return cli;
+        return objcli;
     }
     
-    public static boolean IniciarSesion(Cliente cli){
-        if (consultaClientePorCorreo(cli.getCorreo())==consultaClientePorClave(cli.getClave())){
+    public static boolean IniciarSesion(Cliente objcli){
+        if (consultaClientePorCorreo(objcli.getCorreo())==consultaClientePorClave(objcli.getClave())){
             return true;
         } else {
             return false;
@@ -88,11 +110,11 @@ public class UtilCliente {
         c.setCorreo(Correo);
         int pos = Collections.binarySearch(clientes, c, CorreocliComp);
         if (pos>=0){
-            cli = clientes.get(pos);
+            objcli = clientes.get(pos);
         } else {
-            cli = null;
+            objcli = null;
         }
-        return cli;
+        return objcli;
     }
     
     public static Cliente consultaClientePorClave(String Clave){
@@ -114,71 +136,73 @@ public class UtilCliente {
         c.setClave(Clave);
         int pos = Collections.binarySearch(clientes, c, ClavecliComp);
         if (pos>=0){
-            cli = clientes.get(pos);
+            objcli = clientes.get(pos);
         } else {
-            cli = null;
+            objcli = null;
         }
-        return cli;
+        return objcli;
     }
     
     public static void cargarDatos() {
-        try{
-            try(FileInputStream fiscli = new FileInputStream("DatosClientes.dat")){
-                ObjectInputStream oiscli = new ObjectInputStream(fiscli);
-                clientes = (ArrayList) oiscli.readObject();
-            }
-        } catch (IOException ioe){
-            System.out.println("Error de IO: "+ioe.getMessage());
-        } catch (ClassNotFoundException cnfe){
-            System.out.println("Error de clase no encontrada: "+cnfe.getMessage());
-        }
-    }
-    
-    public static void guardarDatos(){
-        try{
-            if (!clientes.isEmpty()){
-                try(FileOutputStream foscli = new FileOutputStream("DatosClientes.dat")){
-                    ObjectOutputStream ooscli = new ObjectOutputStream(foscli);
-                    ooscli.writeObject(clientes);
-                }
-            } else {
-                System.out.println("Error no hay datos");
-            }
-        } catch (IOException ioe){
-            System.out.println("Error de IO: " +ioe.getMessage());
-        }   
-    }
-    
-    public static void leerClientes(Cliente cli) throws IOException{
-        String  rutaFicheroFactura = "/.Clientes.txt";
-        
         try {
-            File dirClientes = new File("/.Clientes");
-            
-            if (!dirClientes.exists()){
-                dirClientes.mkdir();
-            }
-            
-            FileWriter fw = new FileWriter(rutaFicheroFactura);
-            try (PrintWriter salida = new PrintWriter(new BufferedWriter(fw))) {
-                salida.println("-------------------------------------------------------------");
-                salida.println("Tipo Cliente: "+ cli.getTipoCliente());
-                salida.println("Identificacion: "+ cli.getIdentificacion());
-                salida.println("Nombre: "+cli.getNombre());
-                salida.println("Calle: "+cli.getCalle());
-                salida.println("Numero: "+cli.getNumeroDireccion());
-                salida.println("Codigo Postal: "+cli.getCP());
-                salida.println("Ciudad: "+cli.getCiudad());
-                salida.println("Titular de la tarjeta: "+cli.getTitularTarjeta());
-                salida.println("Numero de la tarjeta: "+cli.getNumeroTarjeta());
-                salida.println("Fecha de caducidad de la tarjeta. "+cli.getFechaCaducidad());
-                salida.println("Numero de telefono: "+cli.getTelefono());
-                salida.println("Web: "+cli.getWeb());
-                salida.println("Correo: "+cli.getCorreo());
-                salida.println("-------------------------------------------------------------");
-            }
-        } catch (IOException ioe){
+            //Lectura de los objetos de tipo persona
+            FileInputStream fis = new FileInputStream("copiaclientes.dat");
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            clientes = (ArrayList) ois.readObject();
+            fis.close();
+        } catch (IOException ioe) {
             System.out.println("Error de IO: " + ioe.getMessage());
+        } catch (ClassNotFoundException cnfe) {
+            System.out.println("Error de clase no encontrada: " + cnfe.getMessage());
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
         }
     }
+    
+
+    /** Guarda los datos de Productos en el fichero */
+    public static void guardarDatos() {
+         try {
+            //Si hay datos los guardamos...
+            if (!clientes.isEmpty()) {
+                /****** Serialización de los objetos ******/
+                //Serialización de las personas
+                FileOutputStream fis = new FileOutputStream("copiaclientes.dat");
+                ObjectOutputStream oos = new ObjectOutputStream(fis);
+                //guardamos el array de personas
+                oos.writeObject(clientes);
+                fis.close();
+            } else {
+                System.out.println("Error: No hay datos...");
+            }
+
+        } catch (IOException ioe) {
+            System.out.println("Error de IO: " + ioe.getMessage());
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+    
+    
+    public static void almacenarClientes(Cliente objcli) throws IOException{
+        FileWriter fw = new FileWriter("clientes.txt");
+        try (PrintWriter salida = new PrintWriter(new BufferedWriter(fw))) {
+            salida.println("-------------------------------------------------------------");
+            salida.println("Tipo Cliente: "+ objcli.getTipoCliente());
+            salida.println("Identificacion: "+ objcli.getIdentificacion());
+            salida.println("Nombre: "+objcli.getNombre());
+            salida.println("Calle: "+objcli.getCalle());
+            salida.println("Numero: "+objcli.getNumeroDireccion());
+            salida.println("Codigo Postal: "+objcli.getCP());
+            salida.println("Ciudad: "+objcli.getCiudad());
+            salida.println("Titular de la tarjeta: "+objcli.getTitularTarjeta());
+            salida.println("Numero de la tarjeta: "+objcli.getNumeroTarjeta());
+            salida.println("Fecha de caducidad de la tarjeta. "+objcli.getFechaCaducidad());
+            salida.println("Numero de telefono: "+objcli.getTelefono());
+            salida.println("Web: "+objcli.getWeb());
+            salida.println("Correo: "+objcli.getCorreo());
+            salida.println("-------------------------------------------------------------");
+                
+            salida.close();
+        }    }
 }

@@ -1,4 +1,4 @@
-package poo.java_eatsLogica;
+package poo.java_eats;
 
 import java.io.Serializable;
 
